@@ -1,12 +1,14 @@
 FROM ocaml/opam:ubuntu-20.04-ocaml-4.13
 
-RUN deluser opam
-
 RUN sudo apt-get -y update && \
     sudo apt-get -y install \
       m4 wget unzip aspcud libshp-dev libplplot-dev gfortran pkg-config git \
       libopenblas-dev liblapacke-dev time python3.9 python3.9-dev python3-pip \
       libcairo2-dev libzmq3-dev libgmp3-dev
+
+USER root
+
+RUN deluser opam
 
 ARG NB_USER=jovyan
 ARG NB_UID=1000
@@ -19,11 +21,11 @@ RUN sudo adduser --disabled-password \
     --uid ${NB_UID} \
     ${NB_USER}
 
-WORKDIR ${HOME}
-
-USER root
 RUN chown -R ${NB_UID} ${HOME}
+
 USER ${NB_USER}
+
+WORKDIR ${HOME}
 
 ENV PATH="$HOME/.local/bin:$PATH"
 ENV SHELL=/bin/bash
