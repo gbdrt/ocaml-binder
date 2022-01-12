@@ -1,4 +1,4 @@
-FROM ocaml/opam:ubuntu-21.04-opam
+FROM ocaml/opam:ubuntu-20.04-ocaml-4.13
 
 RUN sudo apt-get -y update && \
     sudo apt-get -y install \
