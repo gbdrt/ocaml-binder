@@ -1,5 +1,7 @@
 FROM ocaml/opam:ubuntu-20.04-ocaml-4.13
 
+RUN deluser opam
+
 RUN sudo apt-get -y update && \
     sudo apt-get -y install \
       m4 wget unzip aspcud libshp-dev libplplot-dev gfortran pkg-config git \
@@ -7,7 +9,7 @@ RUN sudo apt-get -y update && \
       libcairo2-dev libzmq3-dev libgmp3-dev
 
 ARG NB_USER=jovyan
-ARG NB_UID=1001
+ARG NB_UID=1000
 ENV USER ${NB_USER}
 ENV NB_UID ${NB_UID}
 ENV HOME /home/${NB_USER}
