@@ -1,5 +1,0 @@
-sudo
-software-properties-common
-libopenblas-dev
-liblapacke-dev
-opam
